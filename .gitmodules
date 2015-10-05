@@ -1,0 +1,3 @@
+[submodule "Carthage/Checkouts/mars"]
+	path = Carthage/Checkouts/mars
+	url = https://github.com/csmulhern/mars.git

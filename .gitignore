@@ -1,0 +1,10 @@
+# OS X
+.DS_Store
+
+# Xcode
+xcuserdata
+project.xcworkspace
+.xcurrentversion
+
+# Carthage
+Carthage/Build

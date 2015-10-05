@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>B76A9141-F1EC-4F8C-8A66-5654D104D3CC</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Neptune</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>B3F694526E725F275C98B6757A6233F7E1DD573F</key>
+		<string>gitlab.com:csmulhern/neptune.git</string>
+		<key>E0E0CA58571CE4D84495BC5F644CCA760F617FE7</key>
+		<string>gitlab.com:csmulhern/mars.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Neptune.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>B3F694526E725F275C98B6757A6233F7E1DD573F</key>
+		<string>..</string>
+		<key>E0E0CA58571CE4D84495BC5F644CCA760F617FE7</key>
+		<string>../submodules/mars</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>gitlab.com:csmulhern/neptune.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>B3F694526E725F275C98B6757A6233F7E1DD573F</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>E0E0CA58571CE4D84495BC5F644CCA760F617FE7</string>
+			<key>IDESourceControlWCCName</key>
+			<string>mars</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>B3F694526E725F275C98B6757A6233F7E1DD573F</string>
+			<key>IDESourceControlWCCName</key>
+			<string>neptune</string>
+		</dict>
+	</array>
+</dict>
+</plist>
