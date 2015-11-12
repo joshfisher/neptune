@@ -38,12 +38,6 @@ class ExampleCollectionViewController: CollectionViewController {
         modelDataSource = CollectionDataSource(sections: sections)
     }
     
-    override func registerCollectionClasses() -> () {
-        registerItemClass(TextModelCollectionHeaderView.self, forSupplementaryElementOfKind: UICollectionElementKindSectionHeader)
-        registerItemClass(TextModelCollectionHeaderView.self, forSupplementaryElementOfKind: UICollectionElementKindSectionFooter)
-        registerItemClass(TextModelCollectionViewCell.self)
-    }
-    
     override func collectionViewSizeConstraints() -> CGSize {
         return CGSize(width: collectionView.bounds.size.width, height: CGFloat.max)
     }

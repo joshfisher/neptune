@@ -25,10 +25,6 @@ class MainViewController: TableViewController {
         modelDataSource = TableDataSource(sections: [section])
     }
     
-    override func registerCollectionClasses() -> () {
-        registerCellClass(TextModelTableViewCell.self)
-    }
-    
     func collectionModelSelected() -> () {
         let viewController = ExampleCollectionViewController()
         navigationController?.pushViewController(viewController, animated: true)

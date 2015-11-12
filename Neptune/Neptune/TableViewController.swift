@@ -40,20 +40,6 @@ public class TableViewController: UIViewController, TableDataSourceDelegate {
         tableView.dataSource = modelDataSource
         tableView.delegate = modelDataSource
         view.addSubview(tableView)
-        
-        registerCollectionClasses()
-    }
-    
-    public func registerCellClass(aClass: UITableViewCell.Type) -> () {
-        tableView.registerClass(aClass, forCellReuseIdentifier: NSStringFromClass(aClass))
-    }
-    
-    public func registerRunningClass(aClass: UITableViewHeaderFooterView.Type) -> () {
-        tableView.registerClass(aClass, forHeaderFooterViewReuseIdentifier: NSStringFromClass(aClass))
-    }
-    
-    public func registerCollectionClasses() -> () {
-
     }
     
     public override func viewDidLayoutSubviews() -> () {

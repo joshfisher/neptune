@@ -225,9 +225,34 @@ public class TableDataSource: DataSource<UITableView>, UITableViewDataSource, UI
     public static let Empty = TableDataSource(sections: [])
 
     public var delegate: TableDataSourceDelegate?
+    private var registeredCellReuseIdentifiers: Set<String> = []
+    private var registeredHeaderReuseIdentifiers: Set<String> = []
+    private var registeredFooterReuseIdentifiers: Set<String> = []
 
     public required init(sections: [CompatibleSection]) {
         super.init(sections: sections)
+    }
+
+    private func registerItemWithReuseIdentifier(reuseIdentifier: String, atIndexPath indexPath: NSIndexPath) {
+        if !registeredCellReuseIdentifiers.contains(reuseIdentifier) {
+            let item = itemAtIndexPath(indexPath)
+            delegate?.tableView.registerClass(item.cellClass, forCellReuseIdentifier: reuseIdentifier)
+            registeredCellReuseIdentifiers.insert(reuseIdentifier)
+        }
+    }
+
+    private func registerHeaderWithReuseIdentifier(reuseIdentifier: String, section: Int) {
+        if let header = sections[section].headerModel where !registeredHeaderReuseIdentifiers.contains(reuseIdentifier) {
+            delegate?.tableView.registerClass(header.viewClass, forHeaderFooterViewReuseIdentifier: reuseIdentifier)
+            registeredHeaderReuseIdentifiers.insert(reuseIdentifier)
+        }
+    }
+
+    private func registerFooterWithReuseIdentifier(reuseIdentifier: String, section: Int) {
+        if let footer = sections[section].footerModel where !registeredFooterReuseIdentifiers.contains(reuseIdentifier) {
+            delegate?.tableView.registerClass(footer.viewClass, forHeaderFooterViewReuseIdentifier: reuseIdentifier)
+            registeredFooterReuseIdentifiers.insert(reuseIdentifier)
+        }
     }
 
     // MARK: UITableViewDataSource
@@ -241,7 +266,9 @@ public class TableDataSource: DataSource<UITableView>, UITableViewDataSource, UI
     }
 
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifierForCellAtIndexPath(indexPath), forIndexPath: indexPath) as UITableViewCell
+        let reuseIdentifier = reuseIdentifierForCellAtIndexPath(indexPath)
+        registerItemWithReuseIdentifier(reuseIdentifier, atIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath) as UITableViewCell
         configureCellForCollectionView(tableView, cell: cell, indexPath: indexPath)
         return cell
     }
@@ -255,6 +282,7 @@ public class TableDataSource: DataSource<UITableView>, UITableViewDataSource, UI
     public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         var tableHeader: UIView? = nil
         if let reuseIdentifier = reuseIdentifierForHeaderViewInSection(section) {
+            registerHeaderWithReuseIdentifier(reuseIdentifier, section: section)
             let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier(reuseIdentifier)!
             configureHeaderForCollectionView(tableView, header: header, section: section)
             tableHeader = header
@@ -265,6 +293,7 @@ public class TableDataSource: DataSource<UITableView>, UITableViewDataSource, UI
     public func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         var tableFooter: UIView? = nil
         if let reuseIdentifier = reuseIdentifierForFooterViewInSection(section) {
+            registerFooterWithReuseIdentifier(reuseIdentifier, section: section)
             let footer = tableView.dequeueReusableHeaderFooterViewWithIdentifier(reuseIdentifier)!
             configureFooterForCollectionView(tableView, footer: footer, section: section)
             tableFooter = footer
@@ -367,9 +396,34 @@ public class CollectionDataSource: DataSource<UICollectionView>, UICollectionVie
     public static let Empty = CollectionDataSource(sections: [])
 
     public var delegate: CollectionDataSourceDelegate?
+    private var registeredCellReuseIdentifiers: Set<String> = []
+    private var registeredHeaderReuseIdentifiers: Set<String> = []
+    private var registeredFooterReuseIdentifiers: Set<String> = []
 
     public required init(sections: [CompatibleSection]) {
         super.init(sections: sections)
+    }
+
+    private func registerItemWithReuseIdentifier(reuseIdentifier: String, atIndexPath indexPath: NSIndexPath) {
+        if !registeredCellReuseIdentifiers.contains(reuseIdentifier) {
+            let item = itemAtIndexPath(indexPath)
+            delegate?.collectionView.registerClass(item.cellClass, forCellWithReuseIdentifier: reuseIdentifier)
+            registeredCellReuseIdentifiers.insert(reuseIdentifier)
+        }
+    }
+
+    private func registerHeaderWithReuseIdentifier(reuseIdentifier: String, section: Int) {
+        if let header = self.sections[section].headerModel where !registeredHeaderReuseIdentifiers.contains(reuseIdentifier) {
+            delegate?.collectionView.registerClass(header.viewClass, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: reuseIdentifier)
+            registeredHeaderReuseIdentifiers.insert(reuseIdentifier)
+        }
+    }
+
+    private func registerFooterWithReuseIdentifier(reuseIdentifier: String, section: Int) {
+        if let footer = self.sections[section].footerModel where !registeredFooterReuseIdentifiers.contains(reuseIdentifier) {
+            delegate?.collectionView.registerClass(footer.viewClass, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: reuseIdentifier)
+            registeredFooterReuseIdentifiers.insert(reuseIdentifier)
+        }
     }
 
     // MARK: UICollectionViewDataSource
@@ -383,7 +437,9 @@ public class CollectionDataSource: DataSource<UICollectionView>, UICollectionVie
     }
 
     public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifierForCellAtIndexPath(indexPath), forIndexPath: indexPath) as UICollectionViewCell
+        let reuseIdentifier = reuseIdentifierForCellAtIndexPath(indexPath)
+        registerItemWithReuseIdentifier(reuseIdentifier, atIndexPath: indexPath)
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as UICollectionViewCell
         configureCellForCollectionView(collectionView, cell: cell, indexPath: indexPath)
         return cell
     }
@@ -392,6 +448,7 @@ public class CollectionDataSource: DataSource<UICollectionView>, UICollectionVie
         var view: UICollectionReusableView? = nil
         if kind == UICollectionElementKindSectionHeader {
             if let reuseIdentifier = reuseIdentifierForHeaderViewInSection(indexPath.section) {
+                registerHeaderWithReuseIdentifier(reuseIdentifier, section: indexPath.section)
                 let header = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: reuseIdentifier, forIndexPath: indexPath) as UICollectionReusableView
                 configureHeaderForCollectionView(collectionView, header: header, section: indexPath.section)
                 view = header
@@ -399,6 +456,7 @@ public class CollectionDataSource: DataSource<UICollectionView>, UICollectionVie
         }
         else if kind == UICollectionElementKindSectionFooter {
             if let reuseIdentifier = reuseIdentifierForFooterViewInSection(indexPath.section) {
+                registerFooterWithReuseIdentifier(reuseIdentifier, section: indexPath.section)
                 let footer = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: reuseIdentifier, forIndexPath: indexPath) as UICollectionReusableView
                 configureFooterForCollectionView(collectionView, footer: footer, section: indexPath.section)
                 view = footer

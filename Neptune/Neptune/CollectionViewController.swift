@@ -51,20 +51,6 @@ public class CollectionViewController: UIViewController, CollectionDataSourceDel
         collectionView.dataSource = modelDataSource
         collectionView.delegate = modelDataSource
         view.addSubview(collectionView)
-        
-        registerCollectionClasses()
-    }
-    
-    public func registerItemClass(aClass: UICollectionViewCell.Type) -> () {
-        collectionView.registerClass(aClass, forCellWithReuseIdentifier: NSStringFromClass(aClass))
-    }
-    
-    public func registerItemClass(aClass: UICollectionReusableView.Type, forSupplementaryElementOfKind kind: String) -> () {
-        collectionView.registerClass(aClass, forSupplementaryViewOfKind: kind, withReuseIdentifier: NSStringFromClass(aClass))
-    }
-    
-    public func registerCollectionClasses() -> () {
-        
     }
     
     public override func viewDidLayoutSubviews() -> () {

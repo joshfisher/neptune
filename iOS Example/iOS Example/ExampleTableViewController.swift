@@ -37,12 +37,7 @@ class ExampleTableViewController: TableViewController {
 
         modelDataSource = TableDataSource(sections: [sectionOne, sectionTwo])
     }
-    
-    override func registerCollectionClasses() -> () {
-        registerRunningClass(TextModelTableHeaderView.self)
-        registerCellClass(TextModelTableViewCell.self)
-    }
-    
+
     func barButtonPressed() -> () {
         let count = modelDataSource.sections[0].items.count
         
