@@ -2,9 +2,7 @@ import UIKit
 import Neptune
 
 class ExampleTableViewController: TableViewController {
-    
-    var modelDataSource: TableModelDataSource!
-    var otherDataSource: TableModelDataSource!
+
     var deleteBarButtonItem: UIBarButtonItem!
     
     convenience init() {
@@ -36,14 +34,8 @@ class ExampleTableViewController: TableViewController {
         
         let sectionOne = TableSection(items: items, headerModel: headerModel)
         let sectionTwo = TableSection(items: items, headerModel: headerModel)
-        
-        modelDataSource = ModelDataSource(sections: [sectionOne])
-        otherDataSource = ModelDataSource(sections: [sectionTwo])
-        
-        let composedDataSource = ComposedDataSource<UITableView>()
-        composedDataSource.addDataSource(modelDataSource)
-        composedDataSource.addDataSource(otherDataSource)
-        dataSource = composedDataSource
+
+        modelDataSource = TableDataSource(sections: [sectionOne, sectionTwo])
     }
     
     override func registerCollectionClasses() -> () {
@@ -61,10 +53,10 @@ class ExampleTableViewController: TableViewController {
             
             for i in 0 ..< deletions {
                 indexPaths.append(NSIndexPath(forItem: count - i - 1, inSection: 0))
+                indexPaths.append(NSIndexPath(forItem: count - i - 1, inSection: 1))
             }
             
             modelDataSource.deleteItemsAtIndexPaths(indexPaths)
-            otherDataSource.deleteItemsAtIndexPaths(indexPaths)
             
             if count - deletions == 0 {
                 deleteBarButtonItem.enabled = false

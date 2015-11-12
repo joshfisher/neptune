@@ -2,8 +2,7 @@ import UIKit
 import Neptune
 
 class ExampleCollectionViewController: CollectionViewController {
-    
-    var modelDataSource: CollectionModelDataSource!
+
     var addBarButtonItem: UIBarButtonItem!
 
     init() {
@@ -36,8 +35,7 @@ class ExampleCollectionViewController: CollectionViewController {
         let sectionTwo = Section(items: [], headerModel: headerModel)
         let sections = [sectionOne, sectionTwo]
         
-        modelDataSource = ModelDataSource(sections: sections)
-        dataSource = modelDataSource
+        modelDataSource = CollectionDataSource(sections: sections)
     }
     
     override func registerCollectionClasses() -> () {
@@ -62,9 +60,7 @@ class ExampleCollectionViewController: CollectionViewController {
             for i in 0 ..< additions {
                 items.append(CollectionItem(model: "\(count + additions - i)", cellClass: TextModelCollectionViewCell.self))
                 indexPaths.append(NSIndexPath(forItem: count + additions - i - 1, inSection: 0))
-            }
-            
-            for i in 0 ..< additions {
+
                 items.append(CollectionItem(model: "\(count + additions - i)", cellClass: TextModelCollectionViewCell.self))
                 indexPaths.append(NSIndexPath(forItem: count + additions - i - 1, inSection: 1))
             }

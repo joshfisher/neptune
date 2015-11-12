@@ -13,10 +13,8 @@
 		7E5590B519AC5B3C002D2689 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5590B419AC5B3C002D2689 /* Section.swift */; };
 		7E5A9F6D19AC2E3900E666FC /* Neptune.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E5A9F6C19AC2E3900E666FC /* Neptune.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7E7450CE1AAC36BB0080850F /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7450CD1AAC36BB0080850F /* Array.swift */; };
-		7E83320719C627490096E1F3 /* ComposedDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E83320619C627490096E1F3 /* ComposedDataSource.swift */; };
 		7EBDE0DC1B4CEF4C00E6E2A9 /* Mars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EBDE0DB1B4CEF4C00E6E2A9 /* Mars.framework */; };
-		7EEB746619C4B734006A01D9 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEB746519C4B734006A01D9 /* DataSource.swift */; };
-		7EEB746A19C4C8DB006A01D9 /* ModelDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEB746919C4C8DB006A01D9 /* ModelDataSource.swift */; };
+		7EEB746A19C4C8DB006A01D9 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEB746919C4C8DB006A01D9 /* DataSource.swift */; };
 		7EF8474619D8AAC3006E86AE /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF8474519D8AAC3006E86AE /* CollectionView.swift */; };
 		7EF8474819D8AD45006E86AE /* Running.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF8474719D8AD45006E86AE /* Running.swift */; };
 /* End PBXBuildFile section */
@@ -30,10 +28,8 @@
 		7E5A9F6B19AC2E3900E666FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7E5A9F6C19AC2E3900E666FC /* Neptune.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Neptune.h; sourceTree = "<group>"; };
 		7E7450CD1AAC36BB0080850F /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
-		7E83320619C627490096E1F3 /* ComposedDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposedDataSource.swift; sourceTree = "<group>"; };
 		7EBDE0DB1B4CEF4C00E6E2A9 /* Mars.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mars.framework; path = ../Carthage/Build/iOS/Mars.framework; sourceTree = "<group>"; };
-		7EEB746519C4B734006A01D9 /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
-		7EEB746919C4C8DB006A01D9 /* ModelDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ModelDataSource.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		7EEB746919C4C8DB006A01D9 /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = DataSource.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		7EF8474519D8AAC3006E86AE /* CollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 		7EF8474719D8AD45006E86AE /* Running.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Running.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,9 +74,7 @@
 				7E5590B419AC5B3C002D2689 /* Section.swift */,
 				7E42E2A019B0457200BE7347 /* TableViewController.swift */,
 				7E42E2A219B0457800BE7347 /* CollectionViewController.swift */,
-				7EEB746519C4B734006A01D9 /* DataSource.swift */,
-				7EEB746919C4C8DB006A01D9 /* ModelDataSource.swift */,
-				7E83320619C627490096E1F3 /* ComposedDataSource.swift */,
+				7EEB746919C4C8DB006A01D9 /* DataSource.swift */,
 				7E5A9F6A19AC2E3900E666FC /* Supporting Files */,
 			);
 			path = Neptune;
@@ -187,12 +181,10 @@
 				7EF8474819D8AD45006E86AE /* Running.swift in Sources */,
 				7E0D957519AC33C5002AA7EA /* Item.swift in Sources */,
 				7E42E2A319B0457800BE7347 /* CollectionViewController.swift in Sources */,
-				7EEB746619C4B734006A01D9 /* DataSource.swift in Sources */,
 				7E7450CE1AAC36BB0080850F /* Array.swift in Sources */,
 				7EF8474619D8AAC3006E86AE /* CollectionView.swift in Sources */,
-				7EEB746A19C4C8DB006A01D9 /* ModelDataSource.swift in Sources */,
+				7EEB746A19C4C8DB006A01D9 /* DataSource.swift in Sources */,
 				7E5590B519AC5B3C002D2689 /* Section.swift in Sources */,
-				7E83320719C627490096E1F3 /* ComposedDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

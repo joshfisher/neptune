@@ -22,7 +22,7 @@ class MainViewController: TableViewController {
         let items = [collectionModel, tableModel]
         let section = Section(items: items)
         
-        dataSource = TableModelDataSource(sections: [section])
+        modelDataSource = TableDataSource(sections: [section])
     }
     
     override func registerCollectionClasses() -> () {
