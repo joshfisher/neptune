@@ -54,13 +54,17 @@ public class DataSource<CollectionViewType: CollectionView>: NSObject {
     
     public func configureHeaderForCollectionView(collectionView: CollectionViewType, header: CollectionViewType.RunningViewType, section: Int) -> () {
         if let headerModel = sections[section].headerModel {
-            headerModel.internalConfigurationBlock(view: header, indexPath: NSIndexPath(forItem: 0, inSection: section))
+            let indexPath = NSIndexPath(forItem: 0, inSection: section)
+            headerModel.internalConfigurationBlock(view: header, indexPath: indexPath)
+            headerModel.configurationBlock?(collectionView, header, headerModel, indexPath)
         }
     }
     
     public func configureFooterForCollectionView(collectionView: CollectionViewType, footer: CollectionViewType.RunningViewType, section: Int) -> () {
         if let footerModel = sections[section].footerModel {
-            footerModel.internalConfigurationBlock(view: footer, indexPath: NSIndexPath(forItem: 0, inSection: section))
+            let indexPath = NSIndexPath(forItem: 0, inSection: section)
+            footerModel.internalConfigurationBlock(view: footer, indexPath: indexPath)
+            footerModel.configurationBlock?(collectionView, footer, footerModel, indexPath)
         }
     }
     

@@ -1,12 +1,16 @@
 import UIKit
 
 public class Running<CollectionViewType: CollectionView> {
+
+    public typealias ConfigurationBlock = (CollectionViewType, CollectionViewType.RunningViewType, Running<CollectionViewType>, NSIndexPath) -> ()
     
     internal typealias InternalConfigurationBlock = (view: CollectionViewType.RunningViewType, indexPath: NSIndexPath) -> ()
     internal typealias InternalSizingBlock = (constrainedToSize: CGSize) -> CGSize
     
     public let model: Any
     public let viewClass: AnyClass
+
+    public var configurationBlock: ConfigurationBlock?
     
     internal let internalSizingBlock: InternalSizingBlock
     internal let internalConfigurationBlock: InternalConfigurationBlock
