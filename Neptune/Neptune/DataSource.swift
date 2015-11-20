@@ -77,19 +77,19 @@ public class DataSource<CollectionViewType: CollectionView>: NSObject {
     // MARK: Sizing
     
     public func sizeForHeaderViewInSection(section: Int, constrainedToSize size: CGSize) -> CGSize {
-        var size = CGSize.zero
-        if let headerModel = sections[section].headerModel {
-            size = headerModel.internalSizingBlock(constrainedToSize: size)
+        guard section < sections.count, let headerModel = sections[section].headerModel else {
+            return CGSize.zero
         }
-        return size
+
+        return headerModel.internalSizingBlock(constrainedToSize: size)
     }
-    
+
     public func sizeForFooterViewInSection(section: Int, constrainedToSize size: CGSize) -> CGSize {
-        var size = CGSize.zero
-        if let footerModel = sections[section].footerModel {
-            size = footerModel.internalSizingBlock(constrainedToSize: size)
+        guard section < sections.count, let footerModel = sections[section].footerModel else {
+            return CGSize.zero
         }
-        return size
+
+        return footerModel.internalSizingBlock(constrainedToSize: size)
     }
     
     public func sizeForItemAtIndexPath(indexPath: NSIndexPath, constrainedToSize size: CGSize) -> CGSize {
