@@ -184,7 +184,7 @@ public class DataSource<CollectionViewType: CollectionView>: NSObject {
 
 // MARK: - TableDataSourceDelegate -
 
-public protocol TableDataSourceDelegate {
+public protocol TableDataSourceDelegate: class {
     var tableView: UITableView! { get }
 }
 
@@ -228,7 +228,7 @@ public class TableDataSource: DataSource<UITableView>, UITableViewDataSource, UI
 
     public static let Empty = TableDataSource(sections: [])
 
-    public var delegate: TableDataSourceDelegate?
+    public weak var delegate: TableDataSourceDelegate?
     private var registeredCellReuseIdentifiers: Set<String> = []
     private var registeredHeaderReuseIdentifiers: Set<String> = []
     private var registeredFooterReuseIdentifiers: Set<String> = []
@@ -354,7 +354,7 @@ public class TableDataSource: DataSource<UITableView>, UITableViewDataSource, UI
 
 // MARK: - CollectionDataSourceDelegate -
 
-public protocol CollectionDataSourceDelegate {
+public protocol CollectionDataSourceDelegate: class {
     var collectionView: UICollectionView! { get }
     func collectionViewSizeConstraints() -> CGSize
 }
@@ -399,7 +399,7 @@ public class CollectionDataSource: DataSource<UICollectionView>, UICollectionVie
 
     public static let Empty = CollectionDataSource(sections: [])
 
-    public var delegate: CollectionDataSourceDelegate?
+    public weak var delegate: CollectionDataSourceDelegate?
     private var registeredCellReuseIdentifiers: Set<String> = []
     private var registeredHeaderReuseIdentifiers: Set<String> = []
     private var registeredFooterReuseIdentifiers: Set<String> = []
