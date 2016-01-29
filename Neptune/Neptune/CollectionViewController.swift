@@ -58,6 +58,10 @@ public class CollectionViewController: UIViewController, CollectionDataSourceDel
         collectionView.frame = view.bounds
     }
     
+    public func collectionViewForDataSource(dataSource: CollectionDataSource) -> UICollectionView? {
+        return collectionView
+    }
+    
     public func collectionViewSizeConstraints() -> CGSize {
         return CGSize(width: CGFloat.max, height: CGFloat.max)
     }

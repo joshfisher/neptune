@@ -45,4 +45,8 @@ public class TableViewController: UIViewController, TableDataSourceDelegate {
     public override func viewDidLayoutSubviews() -> () {
         tableView.frame = view.bounds
     }
+    
+    public func tableViewForDataSource(dataSource: TableDataSource) -> UITableView? {
+        return tableView
+    }
 }

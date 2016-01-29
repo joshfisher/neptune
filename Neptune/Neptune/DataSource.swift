@@ -185,40 +185,40 @@ public class DataSource<CollectionViewType: CollectionView>: NSObject {
 // MARK: - TableDataSourceDelegate -
 
 public protocol TableDataSourceDelegate: class {
-    var tableView: UITableView! { get }
+    func tableViewForDataSource(dataSource: TableDataSource) -> UITableView?
 }
 
 extension TableDataSourceDelegate {
     public func dataSource(dataSource: TableDataSource, didInsertSectionsAtIndexes indexes: NSIndexSet) -> () {
-        tableView.insertSections(indexes, withRowAnimation: UITableViewRowAnimation.Automatic)
+        tableViewForDataSource(dataSource)?.insertSections(indexes, withRowAnimation: UITableViewRowAnimation.Automatic)
     }
 
     public func dataSource(dataSource: TableDataSource, didDeleteSectionsAtIndexes indexes: NSIndexSet) -> () {
-        tableView.deleteSections(indexes, withRowAnimation: UITableViewRowAnimation.Automatic)
+        tableViewForDataSource(dataSource)?.deleteSections(indexes, withRowAnimation: UITableViewRowAnimation.Automatic)
     }
 
     public func dataSource(dataSource: TableDataSource, didReloadSectionsAtIndexes indexes: NSIndexSet) -> () {
-        tableView.reloadSections(indexes, withRowAnimation: UITableViewRowAnimation.Automatic)
+        tableViewForDataSource(dataSource)?.reloadSections(indexes, withRowAnimation: UITableViewRowAnimation.Automatic)
     }
 
     public func dataSource(dataSource: TableDataSource, didMoveSection section: Int, toSection newSection: Int) -> () {
-        tableView.moveSection(section, toSection: newSection)
+        tableViewForDataSource(dataSource)?.moveSection(section, toSection: newSection)
     }
 
     public func dataSource(dataSource: TableDataSource, didInsertItemsAtIndexPaths indexPaths: [NSIndexPath]) -> () {
-        tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: UITableViewRowAnimation.Automatic)
+        tableViewForDataSource(dataSource)?.insertRowsAtIndexPaths(indexPaths, withRowAnimation: UITableViewRowAnimation.Automatic)
     }
 
     public func dataSource(dataSource: TableDataSource, didDeleteItemsAtIndexPaths indexPaths: [NSIndexPath]) -> () {
-        tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: UITableViewRowAnimation.Automatic)
+        tableViewForDataSource(dataSource)?.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: UITableViewRowAnimation.Automatic)
     }
 
     public func dataSource(dataSource: TableDataSource, didReloadItemsAtIndexPaths indexPaths: [NSIndexPath]) -> () {
-        tableView.reloadRowsAtIndexPaths(indexPaths, withRowAnimation: UITableViewRowAnimation.Automatic)
+        tableViewForDataSource(dataSource)?.reloadRowsAtIndexPaths(indexPaths, withRowAnimation: UITableViewRowAnimation.Automatic)
     }
 
     public func dataSource(dataSource: TableDataSource, didMoveItemAtIndexPath indexPath: NSIndexPath, toIndexPath newIndexPath: NSIndexPath) -> () {
-        tableView.moveRowAtIndexPath(indexPath, toIndexPath: newIndexPath)
+        tableViewForDataSource(dataSource)?.moveRowAtIndexPath(indexPath, toIndexPath: newIndexPath)
     }
 }
 
@@ -240,21 +240,21 @@ public class TableDataSource: DataSource<UITableView>, UITableViewDataSource, UI
     private func registerItemWithReuseIdentifier(reuseIdentifier: String, atIndexPath indexPath: NSIndexPath) {
         if !registeredCellReuseIdentifiers.contains(reuseIdentifier) {
             let item = itemAtIndexPath(indexPath)
-            delegate?.tableView.registerClass(item.cellClass, forCellReuseIdentifier: reuseIdentifier)
+            delegate?.tableViewForDataSource(self)?.registerClass(item.cellClass, forCellReuseIdentifier: reuseIdentifier)
             registeredCellReuseIdentifiers.insert(reuseIdentifier)
         }
     }
 
     private func registerHeaderWithReuseIdentifier(reuseIdentifier: String, section: Int) {
         if let header = sections[section].headerModel where !registeredHeaderReuseIdentifiers.contains(reuseIdentifier) {
-            delegate?.tableView.registerClass(header.viewClass, forHeaderFooterViewReuseIdentifier: reuseIdentifier)
+            delegate?.tableViewForDataSource(self)?.registerClass(header.viewClass, forHeaderFooterViewReuseIdentifier: reuseIdentifier)
             registeredHeaderReuseIdentifiers.insert(reuseIdentifier)
         }
     }
 
     private func registerFooterWithReuseIdentifier(reuseIdentifier: String, section: Int) {
         if let footer = sections[section].footerModel where !registeredFooterReuseIdentifiers.contains(reuseIdentifier) {
-            delegate?.tableView.registerClass(footer.viewClass, forHeaderFooterViewReuseIdentifier: reuseIdentifier)
+            delegate?.tableViewForDataSource(self)?.registerClass(footer.viewClass, forHeaderFooterViewReuseIdentifier: reuseIdentifier)
             registeredFooterReuseIdentifiers.insert(reuseIdentifier)
         }
     }
@@ -355,41 +355,41 @@ public class TableDataSource: DataSource<UITableView>, UITableViewDataSource, UI
 // MARK: - CollectionDataSourceDelegate -
 
 public protocol CollectionDataSourceDelegate: class {
-    var collectionView: UICollectionView! { get }
+    func collectionViewForDataSource(dataSource: CollectionDataSource) -> UICollectionView?
     func collectionViewSizeConstraints() -> CGSize
 }
 
 extension CollectionDataSourceDelegate {
     public func dataSource(dataSource: CollectionDataSource, didInsertSectionsAtIndexes indexes: NSIndexSet) -> () {
-        collectionView.insertSections(indexes)
+        collectionViewForDataSource(dataSource)?.insertSections(indexes)
     }
 
     public func dataSource(dataSource: CollectionDataSource, didDeleteSectionsAtIndexes indexes: NSIndexSet) -> () {
-        collectionView.deleteSections(indexes)
+        collectionViewForDataSource(dataSource)?.deleteSections(indexes)
     }
 
     public func dataSource(dataSource: CollectionDataSource, didReloadSectionsAtIndexes indexes: NSIndexSet) -> () {
-        collectionView.reloadSections(indexes)
+        collectionViewForDataSource(dataSource)?.reloadSections(indexes)
     }
 
     public func dataSource(dataSource: CollectionDataSource, didMoveSection section: Int, toSection newSection: Int) -> () {
-        collectionView.moveSection(section, toSection: newSection)
+        collectionViewForDataSource(dataSource)?.moveSection(section, toSection: newSection)
     }
 
     public func dataSource(dataSource: CollectionDataSource, didInsertItemsAtIndexPaths indexPaths: [NSIndexPath]) -> () {
-        collectionView.insertItemsAtIndexPaths(indexPaths)
+        collectionViewForDataSource(dataSource)?.insertItemsAtIndexPaths(indexPaths)
     }
 
     public func dataSource(dataSource: CollectionDataSource, didDeleteItemsAtIndexPaths indexPaths: [NSIndexPath]) -> () {
-        collectionView.deleteItemsAtIndexPaths(indexPaths)
+        collectionViewForDataSource(dataSource)?.deleteItemsAtIndexPaths(indexPaths)
     }
 
     public func dataSource(dataSource: CollectionDataSource, didReloadItemsAtIndexPaths indexPaths: [NSIndexPath]) -> () {
-        collectionView.reloadItemsAtIndexPaths(indexPaths)
+        collectionViewForDataSource(dataSource)?.reloadItemsAtIndexPaths(indexPaths)
     }
 
     public func dataSource(dataSource: CollectionDataSource, didMoveItemAtIndexPath indexPath: NSIndexPath, toIndexPath newIndexPath: NSIndexPath) -> () {
-        collectionView.moveItemAtIndexPath(indexPath, toIndexPath: newIndexPath)
+        collectionViewForDataSource(dataSource)?.moveItemAtIndexPath(indexPath, toIndexPath: newIndexPath)
     }
 }
 
@@ -411,21 +411,21 @@ public class CollectionDataSource: DataSource<UICollectionView>, UICollectionVie
     private func registerItemWithReuseIdentifier(reuseIdentifier: String, atIndexPath indexPath: NSIndexPath) {
         if !registeredCellReuseIdentifiers.contains(reuseIdentifier) {
             let item = itemAtIndexPath(indexPath)
-            delegate?.collectionView.registerClass(item.cellClass, forCellWithReuseIdentifier: reuseIdentifier)
+            delegate?.collectionViewForDataSource(self)?.registerClass(item.cellClass, forCellWithReuseIdentifier: reuseIdentifier)
             registeredCellReuseIdentifiers.insert(reuseIdentifier)
         }
     }
 
     private func registerHeaderWithReuseIdentifier(reuseIdentifier: String, section: Int) {
         if let header = self.sections[section].headerModel where !registeredHeaderReuseIdentifiers.contains(reuseIdentifier) {
-            delegate?.collectionView.registerClass(header.viewClass, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: reuseIdentifier)
+            delegate?.collectionViewForDataSource(self)?.registerClass(header.viewClass, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: reuseIdentifier)
             registeredHeaderReuseIdentifiers.insert(reuseIdentifier)
         }
     }
 
     private func registerFooterWithReuseIdentifier(reuseIdentifier: String, section: Int) {
         if let footer = self.sections[section].footerModel where !registeredFooterReuseIdentifiers.contains(reuseIdentifier) {
-            delegate?.collectionView.registerClass(footer.viewClass, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: reuseIdentifier)
+            delegate?.collectionViewForDataSource(self)?.registerClass(footer.viewClass, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: reuseIdentifier)
             registeredFooterReuseIdentifiers.insert(reuseIdentifier)
         }
     }
